@@ -338,11 +338,16 @@ class HeterodynedLikelihood:
         data_channels,
         reference_template_params,
         length_f_het,
-        template_gen_kwargs={},
-        reference_gen_kwargs={},
+        template_gen_kwargs=None,
+        reference_gen_kwargs=None,
         sens_mat=None,
         use_gpu=False,
     ):
+
+        if template_gen_kwargs is None:
+            template_gen_kwargs = {}
+        if reference_gen_kwargs is None:
+            reference_gen_kwargs = {}
 
         # store all input information
         self.template_gen = template_gen
@@ -406,8 +411,8 @@ class HeterodynedLikelihood:
     def init_heterodyne_info(
         self,
         reference_template_params,
-        template_gen_kwargs={},
-        reference_gen_kwargs={},
+        template_gen_kwargs=None,
+        reference_gen_kwargs=None,
     ):
         """Prepare all information for Heterdyning
 
@@ -434,6 +439,11 @@ class HeterodynedLikelihood:
                 (Default: ``{}``)
 
         """
+
+        if template_gen_kwargs is None:
+            template_gen_kwargs = {}
+        if reference_gen_kwargs is None:
+            reference_gen_kwargs = {}
 
         # add the necessary kwargs for the initial template generation process.
         template_gen_kwargs["squeeze"] = True

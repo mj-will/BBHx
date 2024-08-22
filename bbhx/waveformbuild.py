@@ -282,11 +282,18 @@ class BBHWaveformFD:
 
     def __init__(
         self,
-        amp_phase_kwargs={},
-        response_kwargs={},
-        interp_kwargs={},
+        amp_phase_kwargs=None,
+        response_kwargs=None,
+        interp_kwargs=None,
         use_gpu=False,
     ):
+        if amp_phase_kwargs is None:
+            amp_phase_kwargs = {}
+        if response_kwargs is None:
+            response_kwargs = {}
+        if interp_kwargs is None:
+            interp_kwargs = {}
+
         self.use_gpu = use_gpu
 
         # initialize waveform and response funtions
